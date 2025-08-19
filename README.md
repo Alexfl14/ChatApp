@@ -10,10 +10,6 @@ A real-time chat application built with Python/Flask and deployed on a scalable,
 ## Cloud Architecture
 The architecture was designed for high availability and scalability, distributing the application across multiple Availability Zones.
 
-![Architecture Diagram](architecture-diagram.png)
-
-*(Note: Replace with your architecture diagram image)*
-
 **The request flow is as follows:**
 * A custom domain in **Route 53** points to an **Application Load Balancer (ELB)**.
 * The ELB terminates SSL using a certificate from **ACM** and distributes traffic to a **Target Group**.
