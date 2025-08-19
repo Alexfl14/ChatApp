@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat with {{ other_user }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f8f9fa; }
+        .header { background: #007bff; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .chat-container { background: white; padding: 20px; border-radius: 5px; margin-bottom: 20px; max-height: 400px; overflow-y: auto; }
+        .message { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .sent { background: #d4edda; text-align: right; }
+        .received { background: #f8d7da; text-align: left; }
+        .message-form { background: white; padding: 20px; border-radius: 5px; }
+        textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; resize: vertical; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #218838; }
+        .back-link { background: #6c757d; color: white; padding: 8px 15px; text-decoration: none; border-radius: 3px; }
+        .back-link:hover { background: #5a6268; }
+        .timestamp { font-size: 0.8em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('welcome') }}" class="back-link">← Back to Users</a>
+        <h2>Chat with {{ other_user }}</h2>
+    </div>
+
+    <div class="chat-container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {% if message.from_user == current_user %}sent{% else %}received{% endif %}">
+                    <strong>{{ message.from_user }}:</strong> {{ message.message_text }}
+                    <div class="timestamp">{{ message.created_at }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No messages yet. Start the conversation!</p>
+        {% endif %}
+    </div>
+
+    <div class="message-form">
+        <form method="POST">
+            <textarea name="message" placeholder="Type your message here..." rows="3" required></textarea><br><br>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

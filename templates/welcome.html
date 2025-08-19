@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat - Welcome</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f8f9fa; }
+        .header { background: #007bff; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .users-container { background: white; padding: 20px; border-radius: 5px; max-height: 400px; overflow-y: auto; }
+        .user-item { padding: 10px; border-bottom: 1px solid #eee; cursor: pointer; }
+        .user-item:hover { background-color: #f0f0f0; }
+        .user-item:last-child { border-bottom: none; }
+        .current-user { background-color: #e3f2fd; font-weight: bold; }
+        .logout { float: right; background: #dc3545; color: white; padding: 8px 15px; text-decoration: none; border-radius: 3px; }
+        .logout:hover { background: #c82333; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Welcome, {{ current_user }}!</h2>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    </div>
+
+    <h3>All Users ({{ users|length }} total)</h3>
+    <div class="users-container">
+        {% for user in users %}
+            <div class="user-item {% if user.username == current_user %}current-user{% endif %}"
+                 onclick="{% if user.username != current_user %}window.location.href='{{ url_for('chat', other_user=user.username) }}'{% endif %}">
+                <strong>{{ user.username }}</strong>
+                <small style="float: right; color: #666;">
+                    Joined: {{ user.created_at[:10] }}
+                </small>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
