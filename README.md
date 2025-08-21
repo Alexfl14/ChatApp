@@ -7,9 +7,6 @@ A real-time chat application built with Python/Flask and deployed on a scalable,
 * **Persistent Data:** User and message history stored in DynamoDB.
 * **Health Check:** A /health endpoint for load balancer integration.
 
-## Cloud Architecture
-The architecture was designed for high availability and scalability, distributing the application across multiple Availability Zones.
-
 **The request flow is as follows:**
 * A custom domain in **Route 53** points to an **Application Load Balancer (ELB)**.
 * The ELB terminates SSL using a certificate from **ACM** and distributes traffic to a **Target Group**.
@@ -33,13 +30,6 @@ DYNAMODB_MESSAGES_TABLE="alex-messages"
 ```
 
 ### 3. Install & Run
-Clone the repo and install dependencies:
-
-```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
-pip install -r requirements.txt
-```
 
 **To run with Docker (Recommended):**
 
