@@ -31,7 +31,7 @@ DYNAMODB_MESSAGES_TABLE="alex-messages"
 
 ### 3. Install & Run
 
-**To run with Docker (Recommended):**
+**Run with Docker:**
 
 ```bash
 # Build the image
